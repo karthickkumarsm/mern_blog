@@ -15,13 +15,13 @@ const Header = () => {
         </span>
         Blog
       </Link>
-      <div className='flex items-center ml-auto'> {/* Use ml-auto to push the search to the right */}
+      <div className='flex items-center ml-auto'> 
         <TextInput
           type='text'
           placeholder='Search...'
-          className='hidden lg:inline-block mr-2' // Show input on larger screens
+          className='hidden lg:inline-block mr-2'
         />
-        <Button color='gray' pill> {/* Button for search, styled as pill */}
+        <Button color='gray' pill>
           <AiOutlineSearch className='w-6 h-6'/>
         </Button>
       </div>
