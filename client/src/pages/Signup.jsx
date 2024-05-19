@@ -1,8 +1,12 @@
-import React from 'react'
+import useState from 'react'
 import {Link} from 'react-router-dom'
 import { Button, Label, TextInput } from 'flowbite-react';
 
 const Signup = () => {
+  const [formData, setFormData] = useState({});
+  const handleChange=(e)=>{
+    setFormData({...formData,[e.target.id]:e.target.value});
+  }
   return (
     <div className='min-h-screen mt-20'>
       <div className='flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-10'>
@@ -30,22 +34,25 @@ const Signup = () => {
                type='text'
                placeholder='Username'
                id='username'
+               onChange={handleChange}
                />
             </div>
             <div>
               <Label value='Your E-mail'/>
               <TextInput
-               type='text'
+               type='email'
                placeholder='E-mail'
                id='email'
+               onChange={handleChange}
                />
             </div>
             <div>
               <Label value='Your Password'/>
               <TextInput
-               type='text'
+               type='password'
                placeholder='Password'
                id='password'
+               onChange={handleChange}
                />
             </div>
             <Button gradientDuoTone='purpleToPink' type='submit'>Sign up</Button>
