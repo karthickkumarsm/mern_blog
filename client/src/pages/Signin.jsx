@@ -8,8 +8,7 @@ import { useDispatch,useSelector } from 'react-redux';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {loading , error:errorMessage} = useSelector(state=>state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange=(e)=>{
@@ -18,7 +17,7 @@ const SignIn = () => {
   const handleSubmit= async(e)=>{
     e.preventDefault();
     if(!formData.email||!formData.password){
-      return setErrorMessage('Please fill out all fields.');
+      return dispatch(signInFailure('Please fill out all fields.'));
     }
     try {
       dispatch(signInStart());
@@ -31,7 +30,6 @@ const SignIn = () => {
       if(data.success === false){
        dispatch(signInFailure(data.message));
       }
-      setLoading(false);
       if(res.ok){
         dispatch(signInSuccess(data));
         navigate('/');
