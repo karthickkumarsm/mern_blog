@@ -3,7 +3,7 @@ import {Link,useNavigate } from 'react-router-dom'
 import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice.js';
 import { useDispatch,useSelector } from 'react-redux';
-import { OAuth } from '../components/OAuth.jsx';
+import OAuth from '../components/OAuth';
 
 
 
