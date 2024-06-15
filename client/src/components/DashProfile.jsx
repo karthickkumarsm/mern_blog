@@ -42,6 +42,8 @@ export const DashProfile = () => {
       (error) =>{
         setImageFileUploadError("Could not upload image (File must be less than 2MB)");
         setImageFileUploadProgress(null);
+        setImageFile(null);
+        setImageFileUrl(null);
       },
       ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
