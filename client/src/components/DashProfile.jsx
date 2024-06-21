@@ -13,6 +13,13 @@ export const DashProfile = () => {
   const filePickerRef = useRef();
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({...formData,[e.target.id] : e.target.value});
+  }
+
+  
 
   const handleImageChange=(e)=>{
     const file=e.target.files[0];
@@ -48,6 +55,7 @@ export const DashProfile = () => {
       ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
           setImageFileUrl(downloadURL);
+          setFormData({...formData,profilePicture:downloadURL});
         })
       }
     )
@@ -57,7 +65,7 @@ export const DashProfile = () => {
   return (
     <div className='max-w-lg mx-auto p-3 w-full'>
       <h1 className='my-7 text-center font-semibold text-3xl'>Profile</h1>
-      <form className='flex flex-col gap-4'>
+      <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <input type='file' accept='image/*' onChange={handleImageChange} ref={filePickerRef} hidden/>
        <div className="relative w-32 h-32 self-center rounded-full cursor-pointer shadow-md overflow-hidden" onClick={()=> filePickerRef.current.click()}>
         {imageFileUploadProgress && (
@@ -91,9 +99,9 @@ export const DashProfile = () => {
           {imageFileUploadError}
         </Alert>
        )}
-       <TextInput type='text' id='username' placeholder='Username' defaultValue={currentUser.username} />
-       <TextInput type='email' id='email' placeholder='email' defaultValue={currentUser.email} />
-       <TextInput type='password' id='password' placeholder='password'/>
+       <TextInput type='text' id='username' placeholder='Username' defaultValue={currentUser.username} onChange={handChange}/>
+       <TextInput type='email' id='email' placeholder='email' defaultValue={currentUser.email} onChange={handChange}/>
+       <TextInput type='password' id='password' placeholder='password' onChange={handChange}/>
 
        <Button type='submit' gradientDuoTone='purpleToBlue' outline>
         Update
