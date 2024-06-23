@@ -19,7 +19,17 @@ export const DashProfile = () => {
     setFormData({...formData,[e.target.id] : e.target.value});
   }
 
-  
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    if(Object.keys(formData).length > 0){
+      return;
+    }
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 
   const handleImageChange=(e)=>{
     const file=e.target.files[0];
