@@ -70,6 +70,8 @@ export const DashProfile = () => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
+    setUpdateUserError(null);
+    setUpdateUserSuccess(null);
     if(Object.keys(formData).length === 0){
       setUpdateUserError('No changes made')
       return;
@@ -159,6 +161,13 @@ export const DashProfile = () => {
         updateUserSuccess && (
           <Alert color='success' className='mt-5'>
           {updateUserSuccess}
+          </Alert>
+        )
+      }
+      {
+        updateUserError && (
+          <Alert color='failure' className='mt-5'>
+          {updateUserError}
           </Alert>
         )
       }
