@@ -16,6 +16,9 @@ export const DashProfile = () => {
   const dispatch = useDispatch();
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [imageFileUploading, setImageFileUploading] = useState(false);
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
+  const [updateUserError, setUpdateUserError] = useState(null);
   const [formData, setFormData] = useState({});
 
   const handleImageChange=(e)=>{
@@ -32,6 +35,7 @@ export const DashProfile = () => {
   }, [imageFile]);
 
   const uploadImage = async() =>{
+    setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
@@ -47,12 +51,14 @@ export const DashProfile = () => {
         setImageFileUploadError("Could not upload image (File must be less than 2MB)");
         setImageFileUploadProgress(null);
         setImageFile(null);
+        setImageFileUploading(false);
         setImageFileUrl(null);
       },
       ()=>{
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
           setImageFileUrl(downloadURL);
           setFormData({...formData,profilePicture:downloadURL});
+          setImageFileUploading(false);
         })
       }
     )
@@ -65,6 +71,11 @@ export const DashProfile = () => {
   const handleSubmit = async(e)=>{
     e.preventDefault();
     if(Object.keys(formData).length === 0){
+      setUpdateUserError('No changes made')
+      return;
+    }
+    if(imageFileUploading){
+      setUpdateUserError('Please wait for image to upload');
       return;
     }
     try {
@@ -79,12 +90,14 @@ export const DashProfile = () => {
       const data =await res.json();
       if(!res.ok){
         dispatch(updateFailure(data.message));
+        setUpdateUserError(data.message);
       }else{
         dispatch(updateSuccess(data));
-
+        setUpdateUserSuccess("User's Profile updated successfully");
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
+      setUpdateUserError(error.message);
     }
   }
 
@@ -142,6 +155,13 @@ export const DashProfile = () => {
           Sign Out
         </span>
       </div>
+      {
+        updateUserSuccess && (
+          <Alert color='success' className='mt-5'>
+          {updateUserSuccess}
+          </Alert>
+        )
+      }
     </div>
   )
 }
