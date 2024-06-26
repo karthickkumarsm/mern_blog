@@ -187,7 +187,7 @@ export const DashProfile = () => {
        </Button>
        {
         currentUser.isAdmin && (
-          <Link to={'create-post'}>
+          <Link to={'/create-post'}>
           <Button
            type='button'
            gradientDuoTone='purpleToPink'
