@@ -82,7 +82,7 @@ const CreatePost = () => {
       <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput type='text' placeholder='Title' required id='title' className='flex-1' onChange={(e)=> setFormData({...formData,title : e.target.value})}/>
-          <Select onChange={(e)=>{setFormData({...formData,title : e.target.value})}}>
+          <Select onChange={(e)=>{setFormData({...formData,category : e.target.value})}}>
             <option value="uncategorized">Select a category</option>
             <option value="programming">Programming</option>
             <option value="lifestylehealth">Lifestyle & Health</option>
