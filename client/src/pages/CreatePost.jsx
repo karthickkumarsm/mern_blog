@@ -84,9 +84,10 @@ const CreatePost = () => {
           <TextInput type='text' placeholder='Title' required id='title' className='flex-1' onChange={(e)=> setFormData({...formData,title : e.target.value})}/>
           <Select onChange={(e)=>{setFormData({...formData,category : e.target.value})}}>
             <option value="uncategorized">Select a category</option>
-            <option value="programming">Programming</option>
-            <option value="lifestylehealth">Lifestyle & Health</option>
-            <option value="tipstricks">Tips & Tricks</option>
+            <option value="dsa">DSA</option>
+            <option value="flutter">Flutter</option>
+            <option value="mern">MERN</option>
+            <option value="nextjs">Next js</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
