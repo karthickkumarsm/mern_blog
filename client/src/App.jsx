@@ -12,6 +12,7 @@ import Header from './components/Header';
 import FooterCon from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
+import PostPage from './pages/PostPage';
 
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
       <Route path='/update-post/:postId' element={<UpdatePost/>}/>
       </Route>
       <Route path='/projects' element={<Projects/>}/>
+      <Route path='/post/:postSlug' element={<PostPage/>}/>
     </Routes>
     <FooterCon/>
     </BrowserRouter>
