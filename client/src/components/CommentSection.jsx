@@ -110,6 +110,7 @@ export default function CommentSection({ postId }) {
       console.log(error.message);
     }
   };
+
   return (
     <div className='max-w-2xl mx-auto w-full p-3'>
       {currentUser ? (
@@ -192,7 +193,7 @@ export default function CommentSection({ postId }) {
         popup
         size='md'
       >
-        <Modal.Header />
+        <Modal.Header/>
         <Modal.Body>
           <div className='text-center'>
             <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
