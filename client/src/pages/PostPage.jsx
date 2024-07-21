@@ -37,9 +37,16 @@ const PostPage = () => {
 
     useEffect(() => {
       try {
-        
+        const fetchRecentPosts = async() => {
+            const res = await fetch(`/api/post/getposts?limit=3`);
+            const data = res.json();
+            if(res.ok){
+                setRecentPosts(data.posts);
+            }
+        }
+        fetchRecentPosts();
       } catch (error) {
-        
+        console.log(error.message);
       }
     }, [])
     
