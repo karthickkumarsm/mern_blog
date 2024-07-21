@@ -9,6 +9,7 @@ const PostPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [post, setPost] = useState(null);
+    const [recentPosts, setRecentPosts] = useState(null);
 
     useEffect(()=>{
         const fetchPost = async() => {
@@ -54,6 +55,12 @@ const PostPage = () => {
             <CallToAction/>
         </div>
         <CommentSection postId={post._id}/>
+        <div className="flex flex-col justify-center items-center mb-5">
+            <h1 className='text-xl mt-5'>Recent articles</h1>
+            <div className="">
+                
+            </div>
+        </div>
     </main>
   )
 }
