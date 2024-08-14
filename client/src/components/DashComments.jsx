@@ -13,7 +13,7 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`/api/user/getcomments`);
+        const res = await fetch(`/api/comment/getcomments`);
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -34,7 +34,7 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `/api/user/getcomments?startIndex=${startIndex}`
+        `/api/comment/getcomments?startIndex=${startIndex}`
       );
       const data = await res.json();
       if (res.ok) {
@@ -137,10 +137,10 @@ export default function DashComments() {
           <div className='text-center'>
             <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
             <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
-              Are you sure you want to delete this user?
+              Are you sure you want to delete this comment?
             </h3>
             <div className='flex justify-center gap-4'>
-              <Button color='failure' onClick={handleDeleteUser}>
+              <Button color='failure' onClick={handleDeleteComment}>
                 Yes, I'm sure
               </Button>
               <Button color='gray' onClick={() => setShowModal(false)}>
