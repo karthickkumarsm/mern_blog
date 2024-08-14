@@ -52,7 +52,7 @@ export default function DashComments() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/comment/delete/${userIdToDelete}`,
+        `/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
         }
