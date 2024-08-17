@@ -15,6 +15,8 @@ import OnlyAdminPrivateRoute from './components/OnlyAdminPrivateRoute';
 import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
 import Search from './pages/Search';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 
 
 const App = () => {
@@ -28,6 +30,8 @@ const App = () => {
       <Route path='/sign-in' element={<Signin/>}/>
       <Route path='/sign-up' element={<Signup/>}/>
       <Route path='/search' element={<Search/>}/>
+      <Route path='/privacy' element={<Privacy/>}/>
+      <Route path='/terms' element={<Terms/>}/>
       <Route element={<PrivateRoute/>}>
       <Route path='/dashboard' element={<Dashboard/>}/>
       </Route>

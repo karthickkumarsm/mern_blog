@@ -15,48 +15,49 @@ const UpdatePost = () => {
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
-  const {postId} = useParams();
+  const { postId } = useParams();
 
   const navigate = useNavigate();
-  const {currentUser} = useSelector((state)=>state.user);
+    const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     try {
-      const fetchPost = async() => {
+      const fetchPost = async () => {
         const res = await fetch(`/api/post/getposts?postId=${postId}`);
         const data = await res.json();
-        if(!res.ok){
+        if (!res.ok) {
           console.log(data.message);
           setPublishError(data.message);
           return;
         }
-        if(res.ok){
+        if (res.ok) {
           setPublishError(null);
           setFormData(data.posts[0]);
         }
-      }
+      };
+
       fetchPost();
     } catch (error) {
-      console.log(error)
+      console.log(error.message);
     }
-  }, [postId])
-  
+  }, [postId]);
 
-  const handleUploadImage = async() => {
+  const handleUploadImage = async () => {
     try {
-      if(!file){
+      if (!file) {
         setImageUploadError('Please select an image');
         return;
       }
       setImageUploadError(null);
       const storage = getStorage(app);
       const fileName = new Date().getTime() + '-' + file.name;
-      const storageRef = ref(storage,fileName);
-      const uploadTask = uploadBytesResumable(storageRef,file);
-      uploadTask.on (
-        'state-changed',
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        'state_changed',
         (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setImageUploadProgress(progress.toFixed(0));
         },
         (error) => {
@@ -64,19 +65,19 @@ const UpdatePost = () => {
           setImageUploadProgress(null);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUploadProgress(null);
             setImageUploadError(null);
-            setFormData({...formData,image:downloadURL});
+            setFormData({ ...formData, image: downloadURL });
           });
         }
       );
     } catch (error) {
       setImageUploadError('Image upload failed');
       setImageUploadProgress(null);
+      console.log(error);
     }
-  }
-
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -101,7 +102,6 @@ const UpdatePost = () => {
       setPublishError('Something went wrong');
     }
   };
-
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
       <h1  className='text-center text-3xl my-7 font-semibold'> Update a post</h1>
