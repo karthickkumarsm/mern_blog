@@ -1,5 +1,5 @@
 import { Navbar, TextInput, Button, Dropdown, Avatar } from 'flowbite-react';
-import { Form, Link,useLocation } from 'react-router-dom';
+import { Form, Link,useLocation,useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import {FaMoon,FaSun} from 'react-icons/fa';
 import {useSelector,useDispatch} from 'react-redux';
@@ -42,6 +42,8 @@ const Header = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('searchTerm',searchTerm);
     
   }
 
