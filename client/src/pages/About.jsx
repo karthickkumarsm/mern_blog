@@ -10,7 +10,7 @@ export default function About() {
             <p>
               Welcome to Karthick's Blog! This blog was created by Karthick Kumar SM
               as a personal project to share his thoughts and ideas with the
-              world. Karthick Kumar SM is an aspiring software devloper who loves to write about
+              world. Karthick Kumar SM is an aspiring software devloper and a MERN Full Stack Developer and a Flutter Developer who loves to write about
               technology, coding, and everything in between.
             </p>
 
